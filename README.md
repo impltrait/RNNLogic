@@ -1,10 +1,10 @@
 # RNNLogic+
 
-In this folder, we provide the refactored codes of RNNLogic+, an improved version of RNNLogic as introduced in the Section 3.4 of the paper.
+在此文件夹中，我们提供了RNNLogic+的重构代码，这是本文第3.4节中介绍的RNNLogic的改进版本。
 
-The idea of RNNLogic+ is to first learn useful logic rules by running *RNNLogic w/o emb*, and then use these logic rules to train a more powerful predictor for reasoning. In this way, RNNLogic+ achieves close results to *RNNLogic with emb*, even though no knowledge graph embeddings are used.
+RNNLogic+ 的理念是首先通过运行 RNNLogic（不带 emb）来学习有用的逻辑规则，然后使用这些逻辑规则来训练更强大的推理预测器。通过这种方式，即使没有使用知识图谱嵌入，RNNLogic+也能通过emb实现与RNNLogic接近的结果。
 
-To run RNNLogic+, you might follow the following steps.
+若要运行 RNNLogic+，您可以执行以下步骤。
 
 ## Step 1: Mine logic rules
 
@@ -24,16 +24,18 @@ The codes run on CPUs. Thus it is better to use a server with many CPUs and use 
 
 ## Step 2: Run RNNLogic+
 
-Next, we are ready to run RNNLogic. To do that, please first edit the config file in the folder `config`, and then go to folder `src`.
+接下来，我们准备运行 RNNLogic。为此，请先编辑文件夹“config”中的配置文件，然后转到文件夹“src”。
 
-If you would like to use single-GPU training, please edit line 39 and line 60, and further run:
+如果您想使用single-GPU训练，请编辑第39行和第60行，然后进一步运行:
 
 `python run_rnnlogic.py --config ../config/FB15k-237.yaml` 
+
 `python run_rnnlogic.py --config ../config/wn18rr.yaml` 
 
 If you would like to use multi-GPU training, please run:
 
 `python -m torch.distributed.launch --nproc_per_node=4 run_rnnlogic.py --config ../config/FB15k-237.yaml`
+
 `python -m torch.distributed.launch --nproc_per_node=4 run_rnnlogic.py --config ../config/wn18rr.yaml`
 
 ## Results and Discussion
